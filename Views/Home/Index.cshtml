@@ -1,0 +1,33 @@
+﻿@model List<MyDailyBlog.Models.BlogPost>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+    @if (Model == null || Model.Count == 0)
+    {
+        <h4>Blog empty</h4>
+        <p>Visit back again later</p>
+    }
+    else
+    {
+        foreach (var post in Model)
+        {
+            <div class="post-card">
+                <h3><a href="~/blog/@post.Id">@post.Title</a></h3>
+                <p>@post.LongTitle</p>
+                <div class="post-date">@post.CreationDate.ToString("MMMM dd, yyyy")</div>
+                <p>
+                    @foreach (var tag in post.Tags)
+                    {
+                        <span class="tag"><a href="~/blog/tag/@tag">@tag</a></span>
+                    }
+                </p>
+            </div>
+            <br />
+        }
+    }
+    @await Html.PartialAsync("~/Shared/_Footer.cshtml")
+</body>
+</html>
