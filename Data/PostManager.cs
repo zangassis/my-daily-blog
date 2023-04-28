@@ -7,6 +7,11 @@ public class PostManager
     public static List<BlogPost> _posts = new List<BlogPost>();
     private readonly string _pathData = @"~/Data/collectionPosts.json";
 
+    public PostManager()
+    {
+        _posts = GetAllPosts();
+    }
+
     public List<BlogPost> GetAllPosts()
     {
         using var jsonFile = File.OpenRead(_pathData.Replace("~/", ""));

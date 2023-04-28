@@ -12,8 +12,8 @@ namespace MyDailyBlog.Controllers
             _manager = manager;
         }
 
-        // GET: BlogController/{idd}
-        [Route("blog/{id}")] // Set the ID parameter  
+        // GET: BlogController/{id}
+        [Route("blog/{id}")]
         public ActionResult Index(Guid id)
         {
             var post = _manager.GetPostById(id);

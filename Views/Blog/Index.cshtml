@@ -1,0 +1,20 @@
+﻿@model MyDailyBlog.Models.BlogPost
+@{
+    ViewBag.Title = Model.Title;
+}
+<article>
+    <header>
+        <h2 style="font-weight: bold;">@Model.Title</h2>
+        <p>By — Author — on @Model.CreationDate.ToString("MMMM dd, yyyy 'at' hh:mm tt")</p>
+        <p>
+            @foreach (var tag in Model.Tags)
+            {
+                <span class="tag"><a href="~/blog/tag/@tag">@tag</a></span>
+            }
+        </p>
+    </header>
+    <section>
+        <p>@Html.Raw(Model.Content.Replace("\r\n", "<br />"))</p>
+    </section>
+</article>
+@await Html.PartialAsync("~/Shared/_Footer.cshtml")
